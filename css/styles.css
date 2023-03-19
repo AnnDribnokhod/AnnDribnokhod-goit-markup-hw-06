@@ -25,6 +25,7 @@
   --footer-description-color: #e7e9fc;
   --footer-bg-color: #2e2f42;
 }
+
 h1,
 h3,
 h2,
@@ -106,6 +107,9 @@ body {
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+.current {
+  color: #404bbf;
+}
 .current::after {
   content: "";
   display: block;
@@ -183,7 +187,7 @@ body {
   color: var(--btn-text-color);
   line-height: 1.5;
   cursor: pointer;
-  transition-property: background-color, box-shadow;
+  transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -192,7 +196,6 @@ body {
 }
 .hero-button:focus {
   background-color: #404bbf;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* --- ADVANTAGES SECTION ---- */
@@ -569,6 +572,7 @@ body {
 .footer-social-media-icon {
   fill: currentColor;
 }
+
 .backdrop {
   background-color: rgba(46, 47, 66, 0.4);
   position: fixed;
@@ -576,6 +580,10 @@ body {
   min-height: 100%;
   top: 0;
   left: 0;
+  transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden {
+  background-color: rgba(46, 47, 66, 0);
 }
 .modal {
   position: absolute;
@@ -590,8 +598,12 @@ body {
   left: 50%;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
 }
 .modal-button {
   display: flex;
@@ -607,11 +619,6 @@ body {
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
-.backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-}
-
 .modal-button:is(:hover, :focus) {
   background-color: #404bbf;
   color: #ffffff;
